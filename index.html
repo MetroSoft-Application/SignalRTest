@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SignalR Receiver</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.17/signalr.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background-color: #f0f0f0;
+            }
+
+            h1 {
+                color: #333;
+                margin-bottom: 5px;
+                margin-top: 0px;
+            }
+
+            #main-container {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            #image-container {
+                flex: 1;
+                text-align: center;
+                display: flex;
+                align-items: flex-start;
+            }
+
+            #real-time-image {
+                max-width: 100%;
+                display: none;
+                border: 1px solid #000;
+                margin-right: 5px;
+            }
+
+            #console-log {
+                width: 500px;
+                height: 200px;
+                border: 1px solid #ccc;
+                overflow-y: scroll;
+                background-color: #f9f9f9;
+                padding: 10px;
+                font-family: monospace;
+                text-align: left;
+                resize: both;
+            }
+
+            #negotiate-url {
+                width: 300px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+
+            .button-container {
+                margin-top: 10px;
+            }
+
+            button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+            }
+
+            #connect-button {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            #disconnect-button {
+                background-color: #f44336;
+                color: white;
+            }
+
+            button:hover {
+                opacity: 0.8;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>SignalR Receiver</h1>
+        <label for="negotiate-url">Negotiate URL:</label>
+        <input type="text" id="negotiate-url" placeholder="Enter negotiate URL"
+            value="http://localhost:7211/api/negotiate">
+        <div class="button-container">
+            <button id="connect-button">Connect</button>
+            <button id="disconnect-button" style="display: none;">Disconnect</button>
+        </div>
+        <div id="main-container">
+            <div id="image-container">
+                <img id="real-time-image" alt="Real-time image" style="max-width: 100%; display: none;">
+                <div id="console-log"></div>
+            </div>
+        </div>
+        <script src="receiver.js"></script>
+    </body>
+
+</html>
