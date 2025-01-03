@@ -52,7 +52,8 @@
                 resize: both;
             }
 
-            #negotiate-url {
+            #negotiate-url,
+            #user-id {
                 width: 300px;
                 padding: 10px;
                 border: 1px solid #ccc;
@@ -93,6 +94,10 @@
         <label for="negotiate-url">Negotiate URL:</label>
         <input type="text" id="negotiate-url" placeholder="Enter negotiate URL"
             value="http://localhost:7211/api/negotiate">
+
+        <label for="user-id">User ID:</label>
+        <input type="text" id="user-id" placeholder="Enter user ID" value="default-user">
+
         <div class="button-container">
             <button id="connect-button">Connect</button>
             <button id="disconnect-button" style="display: none;">Disconnect</button>

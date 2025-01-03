@@ -5,7 +5,11 @@ function logToConsole(message)
 {
     const consoleLog = document.getElementById('console-log');
     const newLog = document.createElement('div');
-    const timestamp = new Date().toLocaleString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', fractionalSecondDigits: 3, hour12: false });
+    const timestamp = new Date().toLocaleString('ja-JP', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        fractionalSecondDigits: 3, hour12: false
+    });
     newLog.textContent = `[${timestamp}] ${message}`;
     consoleLog.appendChild(newLog);
 
@@ -30,10 +34,18 @@ function logToConsole(message)
 async function startSignalR()
 {
     const negotiateUrl = document.getElementById("negotiate-url").value;
+    const userId = document.getElementById("user-id").value; // ユーザーIDを取得
+
+    if (!userId)
+    {
+        console.log("User ID is required to connect.");
+        return;
+    }
+
     try
     {
         // SignalR 接続情報を取得
-        const response = await fetch(negotiateUrl, { method: "POST" });
+        const response = await fetch(`${negotiateUrl}?userId=${encodeURIComponent(userId)}`, { method: "POST" });
         if (!response.ok)
         {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -54,7 +66,6 @@ async function startSignalR()
             imgElement.src = `data:image/jpeg;base64,${base64Image}`;
             imgElement.style.display = "block";
 
-            // 画像が表示されたら、console-logの高さを画像の高さに合わせる
             imgElement.onload = () =>
             {
                 const imgHeight = imgElement.clientHeight;
@@ -70,7 +81,7 @@ async function startSignalR()
 
         // SignalR 接続を開始
         await connection.start();
-        console.log("SignalR connected.");
+        console.log(`SignalR connected with User ID: ${userId}`);
 
         // ボタンの表示を切り替え
         document.getElementById("connect-button").style.display = "none";
