@@ -1,0 +1,1 @@
+`https://gentle-water-07712ed00.4.azurestaticapps.net/`でホスト中
